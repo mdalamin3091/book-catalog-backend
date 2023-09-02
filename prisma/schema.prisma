@@ -78,9 +78,9 @@ model Order {
   userId       String
   user         User          @relation(fields: [userId], references: [id])
   orderedBooks OrderedBook[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status       OrderStatus   @default(pending)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   @@map("orders")
 }
@@ -97,6 +97,12 @@ model OrderedBook {
   updatedAt DateTime @updatedAt
 
   @@map("ordered_books")
+}
+
+enum OrderStatus {
+  pending
+  shipped
+  delivered
 }
 
 enum UserRole {
