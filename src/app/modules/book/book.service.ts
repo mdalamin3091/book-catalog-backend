@@ -20,6 +20,11 @@ const createBook = async (data: Book): Promise<Book> => {
       },
       genre: {
         equals: data?.genre,
+        mode: "insensitive",
+      },
+      author: {
+        equals: data?.author,
+        mode: "insensitive",
       },
     },
   });
@@ -64,6 +69,21 @@ const getAllBook = async (
             },
           };
         } else {
+          if (key === "minPrice") {
+            return {
+              price: {
+                gte: Number((filterData as any)[key]),
+              },
+            };
+          }
+
+          if (key === "maxPrice") {
+            return {
+              price: {
+                lte: Number((filterData as any)[key]),
+              },
+            };
+          }
           return {
             [key]: {
               equals: (filterData as any)[key],
@@ -76,6 +96,7 @@ const getAllBook = async (
 
   const whereCondition: Prisma.BookWhereInput =
     andCondition.length > 0 ? { AND: andCondition } : {};
+  console.log(JSON.stringify(whereCondition));
 
   const result = await prisma.book.findMany({
     where: whereCondition,
@@ -90,12 +111,17 @@ const getAllBook = async (
   });
 
   const total = await prisma.book.count({ where: whereCondition });
-
+  const totalPages = Math.ceil(total / limit);
+  const previousPage = page - 1 > 0 ? page - 1 : null;
+  const nextPage = page + 1 < totalPages ? page + 1 : null;
   return {
     meta: {
       page,
       limit,
       total,
+      totalPages,
+      previousPage,
+      nextPage,
     },
     data: result,
   };
