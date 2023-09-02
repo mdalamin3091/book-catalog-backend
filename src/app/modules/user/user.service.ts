@@ -31,7 +31,7 @@ const getAllUsers = async (
     andCondition.push({
       AND: Object.keys(filterData).map((key) => ({
         [key]: {
-          contains: (filterData as any)[key],
+          equals: (filterData as any)[key],
           mode: "insensitive",
         },
       })),
