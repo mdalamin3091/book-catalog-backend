@@ -14,6 +14,7 @@ router.post(
 );
 router.get("/", bookController.getAllBook);
 router.get("/:id", bookController.getBook);
+router.get("/:categoryId/category", bookController.getBookByCategoryId);
 
 router.patch(
   "/:id",

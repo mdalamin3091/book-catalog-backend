@@ -20,11 +20,11 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 };
+
 const getAllBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const filterOptions = pick(req.query, bookFilterableFields);
     const paginationOptions = pick(req.query, paginationFields);
-    console.log(filterOptions, paginationOptions);
     const result = await bookService.getAllBook(
       filterOptions,
       paginationOptions
@@ -50,6 +50,28 @@ const getBook = async (req: Request, res: Response, next: NextFunction) => {
       success: true,
       statusCode: httpStatus.OK,
       message: "book retrieved successfully",
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+const getBookByCategoryId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const categoryId = req.params.categoryId;
+    const paginationOptions = pick(req.query, paginationFields);
+    const result = await bookService.getBookByCategoryId(
+      categoryId,
+      paginationOptions
+    );
+    res.status(httpStatus.OK).json({
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "book retrieved successfully by category id",
       data: result,
     });
   } catch (err) {
@@ -93,5 +115,6 @@ export const bookController = {
   getAllBook,
   getBook,
   updateBook,
+  getBookByCategoryId,
   deleteBook,
 };
