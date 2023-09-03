@@ -1,5 +1,5 @@
 import createError from "http-errors";
-import { Order } from "@prisma/client";
+import { Order, Prisma, UserRole } from "@prisma/client";
 import { IUser } from "../../../interface/IUser";
 import { prisma } from "../../../utils/prisma";
 import { IOrderBookData } from "./order.interface";
@@ -39,8 +39,13 @@ const createOrder = async (
   return result;
 };
 
-const getAllOrder = async () => {
+const getAllOrder = async (user: IUser) => {
+  const { userId, role } = user;
+  const whereCondition: Prisma.OrderWhereInput =
+    role === UserRole.CUSTOMER ? { userId } : {};
+
   const result = await prisma.order.findMany({
+    where: whereCondition,
     include: {
       orderedBooks: true,
     },

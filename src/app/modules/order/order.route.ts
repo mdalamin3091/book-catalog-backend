@@ -8,14 +8,14 @@ const router = express.Router();
 
 router.post(
   "/create-order",
-  auth(UserRole.ADMIN),
+  auth(UserRole.CUSTOMER),
   validateRequest(orderValidation.createOrderZodSchema),
   orderController.createOrder
 );
 
 router.get(
   "/",
-  // auth(UserRole.ADMIN),
+  auth(UserRole.ADMIN, UserRole.CUSTOMER),
   orderController.getAllOrder
 );
 router.delete(

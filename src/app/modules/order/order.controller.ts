@@ -22,7 +22,8 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
 
 const getAllOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await orderService.getAllOrder();
+    const user = req.user;
+    const result = await orderService.getAllOrder(user as IUser);
     res.status(httpStatus.OK).json({
       success: true,
       statusCode: httpStatus.OK,
