@@ -18,6 +18,13 @@ router.get(
   auth(UserRole.ADMIN, UserRole.CUSTOMER),
   orderController.getAllOrder
 );
+
+router.get(
+  "/:orderId",
+  auth(UserRole.ADMIN, UserRole.CUSTOMER),
+  orderController.getOrder
+);
+
 router.delete(
   "/:id",
   // auth(UserRole.ADMIN),

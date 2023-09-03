@@ -72,8 +72,24 @@ const deleteOrder = async (id: string) => {
   });
 };
 
+const getOrder = async (user: IUser, orderId: string) => {
+  const { userId, role } = user;
+
+  const whereCondition: Prisma.OrderWhereUniqueInput =
+    role === UserRole.ADMIN ? { id: orderId } : { userId, id: orderId };
+  const result = await prisma.order.findUnique({
+    where: whereCondition,
+    include: {
+      orderedBooks: true,
+    },
+  });
+
+  return result;
+};
+
 export const orderService = {
   createOrder,
   getAllOrder,
   deleteOrder,
+  getOrder,
 };

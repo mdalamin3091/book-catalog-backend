@@ -48,9 +48,25 @@ const deleteOrder = async (req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 };
+const getOrder = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = req.user;
+    const orderId = req.params.orderId;
+    const result = await orderService.getOrder(user as IUser, orderId);
+    res.status(httpStatus.OK).json({
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "order fetched successfully",
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const orderController = {
   createOrder,
   getAllOrder,
   deleteOrder,
+  getOrder,
 };
