@@ -59,11 +59,10 @@ const deleteOrder = async (id: string) => {
       id,
     },
   });
+
   if (!isExist) {
     throw new createError.NotFound("ordered not found");
   }
-
-  console.log(isExist);
 
   await prisma.order.delete({
     where: {

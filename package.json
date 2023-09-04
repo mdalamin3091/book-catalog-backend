@@ -33,6 +33,7 @@
     "http-errors": "^2.0.0",
     "http-status": "^1.6.2",
     "jsonwebtoken": "^9.0.2",
+    "start": "^5.1.0",
     "zod": "^3.22.2"
   }
 }

@@ -31,16 +31,4 @@ router.delete(
   orderController.deleteOrder
 );
 
-// router.get("/:id", bookController.getBook);
-// router.get("/:categoryId/category", bookController.getBookByCategoryId);
-
-// router.patch(
-//   "/:id",
-//   auth(UserRole.ADMIN),
-//   validateRequest(bookValidation.update),
-//   bookController.updateBook
-// );
-
-// router.delete("/:id", auth(UserRole.ADMIN), bookController.deleteBook);
-
 export const orderRoutes = router;
