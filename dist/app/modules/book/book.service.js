@@ -118,7 +118,7 @@ const getAllBook = (filterOptions, paginationOptions) => __awaiter(void 0, void 
     const total = yield prisma_1.prisma.book.count({ where: whereCondition });
     const totalPages = Math.ceil(total / limit);
     const previousPage = page - 1 > 0 ? page - 1 : null;
-    const nextPage = page + 1 < totalPages ? page + 1 : null;
+    const nextPage = page + 1 <= totalPages ? page + 1 : null;
     return {
         meta: {
             page,

@@ -113,7 +113,7 @@ const getAllBook = async (
   const total = await prisma.book.count({ where: whereCondition });
   const totalPages = Math.ceil(total / limit);
   const previousPage = page - 1 > 0 ? page - 1 : null;
-  const nextPage = page + 1 < totalPages ? page + 1 : null;
+  const nextPage = page + 1 <= totalPages ? page + 1 : null;
   return {
     meta: {
       page,

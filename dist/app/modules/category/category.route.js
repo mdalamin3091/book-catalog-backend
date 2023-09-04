@@ -11,7 +11,7 @@ const category_controller_1 = require("./category.controller");
 const validationRequest_1 = __importDefault(require("../../middlewares/validationRequest"));
 const category_validation_1 = require("./category.validation");
 const router = express_1.default.Router();
-router.post("/", (0, auth_1.auth)(client_1.UserRole.ADMIN), (0, validationRequest_1.default)(category_validation_1.categoryValidation.create), category_controller_1.categoryController.createCategory);
+router.post("/create-category", (0, auth_1.auth)(client_1.UserRole.ADMIN), (0, validationRequest_1.default)(category_validation_1.categoryValidation.create), category_controller_1.categoryController.createCategory);
 router.get("/", (0, auth_1.auth)(client_1.UserRole.ADMIN), category_controller_1.categoryController.getAllCategory);
 router.get("/:id", (0, auth_1.auth)(client_1.UserRole.ADMIN), category_controller_1.categoryController.getCategory);
 router.patch("/:id", (0, auth_1.auth)(client_1.UserRole.ADMIN), (0, validationRequest_1.default)(category_validation_1.categoryValidation.update), category_controller_1.categoryController.updateCategory);
