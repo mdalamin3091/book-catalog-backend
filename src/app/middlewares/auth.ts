@@ -27,7 +27,7 @@ export const auth =
         next(createError(httpStatus.FORBIDDEN, "your are forbidden user"));
       }
       next();
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(createError(httpStatus.BAD_REQUEST, "invalid token"));
     }
   };

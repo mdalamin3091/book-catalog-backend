@@ -25,10 +25,6 @@ router.get(
   orderController.getOrder
 );
 
-router.delete(
-  "/:id",
-  // auth(UserRole.ADMIN),
-  orderController.deleteOrder
-);
+router.delete("/:id", auth(UserRole.ADMIN), orderController.deleteOrder);
 
 export const orderRoutes = router;

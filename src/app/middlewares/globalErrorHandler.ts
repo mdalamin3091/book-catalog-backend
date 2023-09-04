@@ -9,7 +9,6 @@ export const globalErrorHandler: ErrorRequestHandler = async (
   res,
   next
 ) => {
-  // console.log("error from global", err.name);
   let statusCode = err.status || 500;
   let message = "Internal server error";
   let errorMessages: { path: string; message: string }[] = [
@@ -26,7 +25,7 @@ export const globalErrorHandler: ErrorRequestHandler = async (
     errorMessages = [{ path: "", message: err?.message }];
   } else if (err instanceof Error) {
     message = err?.name;
-    statusCode = err?.status || 500;
+    statusCode = (err as any).status || 500;
     errorMessages = [{ path: "", message: err?.message }];
   }
 
