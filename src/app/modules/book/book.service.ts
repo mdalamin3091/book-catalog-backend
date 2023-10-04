@@ -117,7 +117,7 @@ const getAllBook = async (
   return {
     meta: {
       page,
-      limit,
+      size: limit,
       total,
       totalPages,
       previousPage,
@@ -176,7 +176,7 @@ const getBookByCategoryId = async (
   return {
     meta: {
       page,
-      limit,
+      size: limit,
       total,
       totalPages,
       previousPage,

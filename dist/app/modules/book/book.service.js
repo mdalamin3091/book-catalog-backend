@@ -122,7 +122,7 @@ const getAllBook = (filterOptions, paginationOptions) => __awaiter(void 0, void 
     return {
         meta: {
             page,
-            limit,
+            size: limit,
             total,
             totalPages,
             previousPage,
@@ -171,7 +171,7 @@ const getBookByCategoryId = (categoryId, paginationOptions) => __awaiter(void 0,
     return {
         meta: {
             page,
-            limit,
+            size: limit,
             total,
             totalPages,
             previousPage,

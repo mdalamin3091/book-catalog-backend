@@ -8,20 +8,20 @@ const router = express.Router();
 
 router.post(
   "/create-category",
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   validateRequest(categoryValidation.create),
   categoryController.createCategory
 );
-router.get("/", auth(UserRole.ADMIN), categoryController.getAllCategory);
-router.get("/:id", auth(UserRole.ADMIN), categoryController.getCategory);
+router.get("/", auth(UserRole.admin), categoryController.getAllCategory);
+router.get("/:id", auth(UserRole.admin), categoryController.getCategory);
 
 router.patch(
   "/:id",
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   validateRequest(categoryValidation.update),
   categoryController.updateCategory
 );
 
-router.delete("/:id", auth(UserRole.ADMIN), categoryController.deleteCategory);
+router.delete("/:id", auth(UserRole.admin), categoryController.deleteCategory);
 
 export const categoryRoutes = router;

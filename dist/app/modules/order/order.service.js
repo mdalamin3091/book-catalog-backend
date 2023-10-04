@@ -45,7 +45,7 @@ const createOrder = (user, data) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getAllOrder = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, role } = user;
-    const whereCondition = role === client_1.UserRole.CUSTOMER ? { userId } : {};
+    const whereCondition = role === client_1.UserRole.customer ? { userId } : {};
     const result = yield prisma_1.prisma.order.findMany({
         where: whereCondition,
         include: {
@@ -71,7 +71,7 @@ const deleteOrder = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getOrder = (user, orderId) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, role } = user;
-    const whereCondition = role === client_1.UserRole.ADMIN ? { id: orderId } : { userId, id: orderId };
+    const whereCondition = role === client_1.UserRole.admin ? { id: orderId } : { userId, id: orderId };
     const result = yield prisma_1.prisma.order.findUnique({
         where: whereCondition,
         include: {

@@ -8,21 +8,22 @@ const router = express.Router();
 
 router.post(
   "/create-book",
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   validateRequest(bookValidation.create),
   bookController.createBook
 );
+
 router.get("/", bookController.getAllBook);
 router.get("/:id", bookController.getBook);
 router.get("/:categoryId/category", bookController.getBookByCategoryId);
 
 router.patch(
   "/:id",
-  auth(UserRole.ADMIN),
+  auth(UserRole.admin),
   validateRequest(bookValidation.update),
   bookController.updateBook
 );
 
-router.delete("/:id", auth(UserRole.ADMIN), bookController.deleteBook);
+router.delete("/:id", auth(UserRole.admin), bookController.deleteBook);
 
 export const bookRoutes = router;

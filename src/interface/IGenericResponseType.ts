@@ -1,7 +1,7 @@
 export type IGenericResponseType<T> = {
   meta: {
     page: number;
-    limit: number;
+    size: number;
     total: number;
     totalPages?: number;
     previousPage?: number | null;

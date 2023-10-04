@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get(
   "/",
-  auth(UserRole.CUSTOMER, UserRole.ADMIN),
+  auth(UserRole.customer, UserRole.admin),
   profileController.getProfile
 );
 

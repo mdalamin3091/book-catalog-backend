@@ -8,23 +8,23 @@ const router = express.Router();
 
 router.post(
   "/create-order",
-  auth(UserRole.CUSTOMER),
+  auth(UserRole.customer),
   validateRequest(orderValidation.createOrderZodSchema),
   orderController.createOrder
 );
 
 router.get(
   "/",
-  auth(UserRole.ADMIN, UserRole.CUSTOMER),
+  auth(UserRole.admin, UserRole.customer),
   orderController.getAllOrder
 );
 
 router.get(
   "/:orderId",
-  auth(UserRole.ADMIN, UserRole.CUSTOMER),
+  auth(UserRole.admin, UserRole.customer),
   orderController.getOrder
 );
 
-router.delete("/:id", auth(UserRole.ADMIN), orderController.deleteOrder);
+router.delete("/:id", auth(UserRole.admin), orderController.deleteOrder);
 
 export const orderRoutes = router;

@@ -42,7 +42,7 @@ const createOrder = async (
 const getAllOrder = async (user: IUser) => {
   const { userId, role } = user;
   const whereCondition: Prisma.OrderWhereInput =
-    role === UserRole.CUSTOMER ? { userId } : {};
+    role === UserRole.customer ? { userId } : {};
 
   const result = await prisma.order.findMany({
     where: whereCondition,
@@ -75,7 +75,7 @@ const getOrder = async (user: IUser, orderId: string) => {
   const { userId, role } = user;
 
   const whereCondition: Prisma.OrderWhereUniqueInput =
-    role === UserRole.ADMIN ? { id: orderId } : { userId, id: orderId };
+    role === UserRole.admin ? { id: orderId } : { userId, id: orderId };
   const result = await prisma.order.findUnique({
     where: whereCondition,
     include: {
